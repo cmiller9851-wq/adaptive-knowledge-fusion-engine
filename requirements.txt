@@ -1,0 +1,6 @@
+scrapy>=2.11
+beautifulsoup4
+lxml
+tiktoken   # for token-based chunking
+sentence-transformers
+neo4j>=5.12.0
