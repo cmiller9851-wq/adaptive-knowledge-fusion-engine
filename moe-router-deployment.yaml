@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moe-router
+  namespace: akf-engine
+  labels:
+    app: moe-router
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: moe-router
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: moe-router
+    spec:
+      containers:
+        - name: router
+          image: ghcr.io/yourorg/moe-router:latest
+          resources:
+            limits:
+              nvidia.com/gpu: "1"          # Request 1 GPU per pod
+              cpu: "2000m"
+              memory: "8Gi"
+            requests:
+              nvidia.com/gpu: "1"
+              cpu: "1000m"
+              memory: "4Gi"
+          envFrom:
+            - configMapRef:
+                name: akf-config  # References the configmap.yaml file
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
