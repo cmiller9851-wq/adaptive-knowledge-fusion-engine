@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: akf-config
+  namespace: akf-engine
+data:
+  # MoE router settings
+  ROUTER_TEMPERATURE: "0.8"
+  ROUTER_TOP_K: "4"
+  ROUTER_NOISE_SCALE: "0.03"
+  # Generator settings
+  GEN_TEMPERATURE: "0.9"
+  GEN_TOP_P: "0.95"
+  GEN_MAX_TOKENS: "512"
+  # Blog Expert registration (demonstration only, managed by K8s patch in production)
+  experts: |
+    - name: ReasoningExpert
+      type: logical
+      weight: 0.5
+    - name: CreativeExpert
+      type: generative
+      weight: 0.45
