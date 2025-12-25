@@ -56,24 +56,3 @@ Or use the CLI:
 ```bash
 akfe "What are the health benefits of intermittent fasting?" -k 5
 ```
-
----
-
-## Project Structure
-
-```
-akfe/
-│
-├─ api.py                # FastAPI entry point
-├─ cli.py                # Command‑line interface
-├─ engine.py             # Core FusionEngine
-├─ retrievers/           # BM25, FAISS, Graph, etc.
-├─ encoders/             # Sentence‑transformers, OpenAI, custom TF models
-├─ fusion/
-│   └─ bandit_weighting.py   # Thompson‑sampling bandit
-├─ models/               # Pydantic / dataclasses for results
-│
-tests/                   # Pytest suite
-docker-compose.yml        # Local deployment stack
-mkdocs.yml                # Documentation skeleton
-README.md                 # You’re reading it!
