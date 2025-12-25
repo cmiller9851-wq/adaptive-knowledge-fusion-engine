@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    command: ["uvicorn", "akfe.api:app", "--host", "0.0.0.0", "--port", "8000"]
+    ports:
+      - "8000:8000"
+    depends_on:
+      - faiss
+    environment:
+      - FAISS_HOST=faiss
+      - FAISS_PORT=5000
+
+  faiss:
+    image: milvusdb/milvus:latest
+    ports:
+      - "5000:5000"
+    volumes:
+      - milvus_data:/var/lib/milvus
+
+volumes:
+  milvus_data:
