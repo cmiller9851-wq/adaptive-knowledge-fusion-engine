@@ -1,4 +1,4 @@
-# AK-F Engine# Adaptive Knowledge Fusion Engine (AKFE)
+Adaptive Knowledge Fusion Engine (AKFE)
 
 *Bridging the gap between structured data and unstructured text, one query at a time.*
 
