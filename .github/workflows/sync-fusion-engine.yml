@@ -1,0 +1,20 @@
+name: Fusion Engine Sync
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs every day at Midnight
+  workflow_dispatch: # Allows manual trigger
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update Fusion Data
+        run: |
+          python3 fusion_engine.py # The script we discussed
+      - name: Commit Fusion Snapshot
+        run: |
+          git config --global user.name "Fusion-Bot"
+          git config --global user.email "bot@quickprompt.solutions"
+          git add TRUST_ENGINE_SYNC.json
+          git commit -m "data: Automatic daily ingestion of SwervinCurvin narrative"
+          git push
